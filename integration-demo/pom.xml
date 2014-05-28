@@ -22,6 +22,15 @@
     <groupId>edu.esprit.integration.demo</groupId>
     <artifactId>integration-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+     <distributionManagement>
+
+        <repository>
+            <id>nexus</id>
+            <name>nexus</name>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+        </repository>
+
+    </distributionManagement> 
     <packaging>war</packaging>
     <name>integration-demo</name>
     <description>A starter Java EE 6 webapp project for use on JBoss AS 7 / EAP 6, generated from the jboss-javaee6-webapp archetype</description>
@@ -78,6 +87,7 @@
                 <groupId>org.jboss.bom</groupId>
                 <artifactId>jboss-javaee-6.0-with-tools</artifactId>
                 <version>${version.jboss.bom}</version>
+              
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -220,6 +230,12 @@
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>${version.jboss.maven.plugin}</version>
+                  <configuration>
+			        <hostname>127.0.0.1</hostname>
+			        <username>myuser</username>
+			        <password>123</password>
+			        <port>9999</port>
+		        </configuration>
             </plugin>
         </plugins>
     </build>
@@ -232,7 +248,7 @@
                 tests that execute in the specified container -->
             <id>default</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <build>
                 <plugins>
